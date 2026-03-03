@@ -1,0 +1,59 @@
+{
+  "skill_name": "audience-persona",
+  "evals": [
+    {
+      "name": "vietnamese-dental-implant-personas",
+      "prompt": "Create personas for dental-implant-clinic. The niche brief is at output/dental-implant-clinic/research/niche-brief.md.",
+      "preconditions": [
+        "output/dental-implant-clinic/research/niche-brief.md must exist with keyword clusters"
+      ],
+      "expected_outputs": [
+        "output/dental-implant-clinic/research/personas.md",
+        "output/dental-implant-clinic/research/ad-copy-suggestions.md"
+      ],
+      "expected_behavior": [
+        "Reads niche-brief.md before generating anything",
+        "Checks for competitor-report.md (uses it if available, notes absence if not)",
+        "Creates 2-3 distinct personas with Vietnamese names",
+        "Each persona maps to a specific ad group from the niche-brief",
+        "Pain points are specific to dental implants, not generic (e.g., 'fears implant surgery pain' not 'wants good service')",
+        "Each persona has a different preferred tone (e.g., reassuring vs data-driven)",
+        "Generates 3 headlines per ad group, ALL ≤ 30 characters with visible character count",
+        "Generates 2 descriptions per ad group, ALL ≤ 90 characters with visible character count",
+        "Shows character count verification (✅/❌) for every headline and description",
+        "Vietnamese diacritics counted as 1 character each",
+        "Headline 1 of each ad group is designed to be the landing page h1 (message match)",
+        "CTA copy uses action verb + specific benefit, not generic 'Gửi' or 'Submit'",
+        "Includes persona → ad group → LP tone mapping table",
+        "Suggests next step: run design-brief"
+      ]
+    },
+    {
+      "name": "english-saas-personas-no-competitor-data",
+      "prompt": "Create audience personas for project-management-saas. Niche brief exists at output/project-management-saas/research/niche-brief.md. No competitor analysis has been run.",
+      "preconditions": [
+        "output/project-management-saas/research/niche-brief.md must exist",
+        "output/project-management-saas/research/competitor-report.md must NOT exist"
+      ],
+      "expected_outputs": [
+        "output/project-management-saas/research/personas.md",
+        "output/project-management-saas/research/ad-copy-suggestions.md"
+      ],
+      "expected_behavior": [
+        "Reads niche-brief.md successfully",
+        "Notes that competitor-report.md is missing with warning: 'Personas generated without competitor analysis context'",
+        "Does NOT stop or error — competitor data is recommended, not required",
+        "Creates 2-3 personas with English names for US market",
+        "Personas include SaaS-relevant traits (team size, current tool frustrations, integration needs)",
+        "Ad copy in English, all within character limits",
+        "All 3 headlines per ad group verified ≤ 30 chars with count shown",
+        "All 2 descriptions per ad group verified ≤ 90 chars with count shown",
+        "Includes comparison-shopper persona (since niche has 'Monday.com alternative' keywords)",
+        "CTA suggestions include SaaS patterns ('Start Free Trial', 'See Demo')",
+        "Sitelink suggestions follow SaaS pattern (Features, Pricing, Case Studies, Free Trial)",
+        "Message match table present — headline 1 = landing page h1",
+        "Saves both output files to correct paths"
+      ]
+    }
+  ]
+}

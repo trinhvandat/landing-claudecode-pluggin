@@ -1,0 +1,47 @@
+{
+  "skill_name": "competitor-analysis",
+  "evals": [
+    {
+      "name": "vietnamese-dental-implant-competitors",
+      "prompt": "Analyze these competitor dental implant landing pages: https://example-nhakhoa-a.vn/implant, https://example-nhakhoa-b.vn/trong-rang-implant, https://example-nhakhoa-c.vn/cay-ghep-implant. The project is 'dental-implant-clinic'.",
+      "expected_outputs": [
+        "output/dental-implant-clinic/research/competitor-report.md",
+        "output/dental-implant-clinic/research/swipe-file.md"
+      ],
+      "expected_behavior": [
+        "Confirms the 3 URLs with user before crawling",
+        "Attempts web_fetch on each URL; handles failures gracefully",
+        "If web_fetch fails, offers copy-paste HTML fallback with clear instructions",
+        "Scores each competitor across all 6 dimensions (MESSAGE, STRUCTURE, TRUST, CTA, DESIGN, TECH) with 1-10 scores",
+        "Extracts exact h1 text, CTA button text, form field count from each page",
+        "Detects framework (WordPress, React, etc.) and analytics (GTM, GA)",
+        "Identifies common patterns (table stakes), differentiators, and gaps",
+        "Creates swipe file with best headline, CTA, trust approach from across competitors",
+        "Produces competitor scoreboard comparison table",
+        "Shows progress indicators: [competitor-analysis] Step N/6",
+        "Suggests next step: run audience-persona"
+      ]
+    },
+    {
+      "name": "keyword-based-saas-competitors",
+      "prompt": "Find and analyze competitors for our project management SaaS. Use keywords: 'best project management tool', 'Monday.com alternative'. Project name is 'project-management-saas'. I don't have specific URLs.",
+      "expected_outputs": [
+        "output/project-management-saas/research/competitor-report.md",
+        "output/project-management-saas/research/swipe-file.md"
+      ],
+      "expected_behavior": [
+        "Uses web_search with provided keywords to find competitor pages",
+        "Extracts 3-5 competitor URLs from search results (sponsored + organic)",
+        "Presents found URLs to user for confirmation before crawling",
+        "If niche-brief.md exists for this project, also uses its top keywords",
+        "Handles mix of fetchable and unfetchable pages gracefully",
+        "If a page is SPA/JavaScript-rendered, detects empty body and asks for rendered HTML paste",
+        "Scores all successfully fetched competitors on 6 dimensions",
+        "Cross-competitor comparison identifies SaaS-specific patterns (free trial CTAs, feature comparison tables, integration logos)",
+        "Swipe file highlights best SaaS landing page elements",
+        "Report notes any competitors that could not be analyzed with reason",
+        "Saves both competitor-report.md and swipe-file.md to correct output path"
+      ]
+    }
+  ]
+}

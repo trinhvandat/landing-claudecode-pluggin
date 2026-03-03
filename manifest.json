@@ -1,0 +1,36 @@
+{
+  "name": "landing-page-pro",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "niche-research",
+      "description": "Research keywords, search intent, and CPC estimates for Google Ads landing pages. Use when starting a new landing page project, when user says 'research keywords', 'find niche', 'market analysis', or any new client brief. Always use this BEFORE building any landing page.",
+      "path": "skills/niche-research/SKILL.md"
+    },
+    {
+      "name": "competitor-analysis",
+      "description": "Crawl and analyze competitor landing pages to find patterns, strengths, weaknesses, and gaps. Use when user provides competitor URLs, says 'analyze competitor', 'check competition', or wants to understand the competitive landscape before building.",
+      "path": "skills/competitor-analysis/SKILL.md"
+    },
+    {
+      "name": "audience-persona",
+      "description": "Generate buyer personas and Google Ads copy suggestions based on research data. Use when user says 'create persona', 'target audience', 'write ad copy', 'who is the customer', or after completing niche research and competitor analysis.",
+      "path": "skills/audience-persona/SKILL.md"
+    },
+    {
+      "name": "design-brief",
+      "description": "Generate a design system (MASTER.md) for the landing page using UUPM design intelligence. Use when user says 'design the page', 'choose colors', 'pick style', 'create design brief', or before building the landing page. This bridges research outputs to visual design decisions.",
+      "path": "skills/design-brief/SKILL.md"
+    },
+    {
+      "name": "landing-page-builder",
+      "description": "Generate complete landing page code optimized for Google Ads conversion. Use when user says 'build the page', 'create landing page', 'code the page', 'generate HTML'. Requires design-brief output (MASTER.md) and research outputs. Auto-detects or asks for tech stack.",
+      "path": "skills/landing-page-builder/SKILL.md"
+    },
+    {
+      "name": "conversion-optimizer",
+      "description": "Audit an existing landing page for Google Ads conversion optimization. Scores across 7 categories, suggests specific fixes and A/B test variants. Use when user says 'audit page', 'optimize conversion', 'review landing page', 'improve page', or after building a page.",
+      "path": "skills/conversion-optimizer/SKILL.md"
+    }
+  ]
+}

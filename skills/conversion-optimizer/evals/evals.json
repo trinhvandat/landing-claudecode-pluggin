@@ -1,0 +1,56 @@
+{
+  "skill_name": "conversion-optimizer",
+  "evals": [
+    {
+      "name": "audit-built-page-with-full-context",
+      "prompt": "Audit the landing page for dental-implant-clinic. The page is at output/dental-implant-clinic/src/index.html",
+      "preconditions": [
+        "output/dental-implant-clinic/src/index.html must exist (built by landing-page-builder)",
+        "output/dental-implant-clinic/research/ad-copy-suggestions.md must exist",
+        "output/dental-implant-clinic/design-system/MASTER.md must exist",
+        "output/dental-implant-clinic/research/personas.md must exist"
+      ],
+      "expected_outputs": [
+        "output/dental-implant-clinic/audit/optimization-report.md"
+      ],
+      "expected_behavior": [
+        "Reads the HTML file directly (not via web_fetch)",
+        "Reads ad-copy-suggestions.md and checks h1 against expected headline (exact match check)",
+        "Reads MASTER.md and checks design compliance (colors, fonts, CTA styling)",
+        "Reads personas.md and checks if pain points and objections are addressed",
+        "Scores all 7 categories with sub-metric breakdowns and evidence",
+        "Uses full weighting (20/20/15/15/15/10/5) since all research context is available",
+        "Identifies specific issues with current/fix format (not vague recommendations)",
+        "Generates 2-3 A/B tests with hypothesis, metric, and priority",
+        "Shows estimated score improvement for each fix tier",
+        "Saves audit report to correct output path",
+        "Shows progress with per-category scores during execution"
+      ]
+    },
+    {
+      "name": "audit-external-url-standalone-mode",
+      "prompt": "Audit this landing page: https://example-competitor.com/landing-page. No project context — just analyze it.",
+      "preconditions": [
+        "No output/ directory exists for this page",
+        "web_fetch must be available (or user must be willing to paste HTML)"
+      ],
+      "expected_outputs": [
+        "Audit report displayed to user (no file saved without project name)"
+      ],
+      "expected_behavior": [
+        "Asks user for project name or proceeds without saving to file",
+        "Uses web_fetch to retrieve the page HTML",
+        "If web_fetch fails, asks user to paste HTML source with clear instructions",
+        "Enters standalone audit mode — notes 'no research context available'",
+        "Reweights Category 1 (Message Match) to 10% since no ad copy to compare",
+        "Redistributes weight: CTA 25%, Mobile 20%, others unchanged",
+        "Still scores all 7 categories with evidence from HTML analysis",
+        "Message match scored on generic headline quality instead of ad match",
+        "Detects framework, script count, image optimization from HTML source",
+        "Generates fix recommendations with specific current vs recommended states",
+        "Generates A/B tests even without research context (based on observed weaknesses)",
+        "If page has navigation menu, flags it as non-landing-page and notes in report header"
+      ]
+    }
+  ]
+}

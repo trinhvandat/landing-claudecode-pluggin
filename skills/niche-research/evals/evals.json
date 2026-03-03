@@ -1,0 +1,39 @@
+{
+  "skill_name": "niche-research",
+  "evals": [
+    {
+      "name": "vietnamese-dental-implant",
+      "prompt": "I need a landing page for my dental implant clinic in Ho Chi Minh City. We specialize in All-on-4 implants. Budget is about 30 million VND per month for Google Ads. Our website is https://example-nhakhoa.vn",
+      "expected_outputs": [
+        "output/dental-implant-clinic/research/niche-brief.md"
+      ],
+      "expected_behavior": [
+        "Extracts product (dental implant / All-on-4), geo (Ho Chi Minh City), language (Vietnamese), budget (30M VND), URL",
+        "Searches both Vietnamese (trồng răng implant, cấy ghép implant, implant all on 4) and English terms",
+        "Collects 20+ keywords with Vietnamese diacritics",
+        "Classifies intent correctly: 'giá implant' = TRANSACTIONAL, 'implant tốt nhất' = COMMERCIAL",
+        "Creates 3-5 keyword clusters mapped to ad groups",
+        "Includes CPC estimates with mandatory caveat about Keyword Planner",
+        "Generates negative keywords including 'miễn phí', 'học', 'tuyển dụng'",
+        "Saves completed niche-brief.md to correct output path"
+      ]
+    },
+    {
+      "name": "english-saas-product",
+      "prompt": "Research keywords for our project management SaaS tool targeting small businesses in the US. We compete with Monday.com and Asana. No existing website yet.",
+      "expected_outputs": [
+        "output/project-management-saas/research/niche-brief.md"
+      ],
+      "expected_behavior": [
+        "Extracts product (project management SaaS), geo (US), language (English), budget (Not specified), URL (None)",
+        "Searches English terms: 'project management tool', 'best project management software', 'Monday alternative'",
+        "Collects 20+ keywords including competitor comparison terms",
+        "Classifies: 'buy project management tool' = TRANSACTIONAL, 'Monday vs Asana' = COMMERCIAL",
+        "Creates clusters including a 'Competitor Alternatives' cluster",
+        "Notes high CPC for SaaS keywords ($5-$15+ range)",
+        "Negative keywords include 'free', 'open source', 'enterprise' if targeting SMB",
+        "Saves completed niche-brief.md to correct output path"
+      ]
+    }
+  ]
+}
