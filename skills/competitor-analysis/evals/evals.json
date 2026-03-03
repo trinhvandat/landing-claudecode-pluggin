@@ -42,6 +42,23 @@
         "Report notes any competitors that could not be analyzed with reason",
         "Saves both competitor-report.md and swipe-file.md to correct output path"
       ]
+    },
+    {
+      "name": "edge-case-broken-urls",
+      "prompt": "Analyze these competitors for my-bakery project: https://thisdomaindoesnotexist12345.com/landing, https://httpstat.us/500, https://httpstat.us/403. All three URLs are the ones I have.",
+      "expected_outputs": [],
+      "expected_behavior": [
+        "Confirms the 3 URLs with user before attempting to crawl",
+        "Attempts web_fetch on each URL sequentially",
+        "First URL: DNS failure or connection error — logs failure, tries www. variant, then offers paste fallback",
+        "Second URL: HTTP 500 — logs 'server error', offers alternate URL or paste fallback",
+        "Third URL: HTTP 403 — logs 'access denied', tries http:// variant, then offers paste fallback",
+        "Does NOT crash or abandon the entire skill after first failure",
+        "After all 3 fail, tells user: 'Could not fetch any competitor pages. To proceed, please paste HTML source or provide different URLs.'",
+        "Does NOT produce a competitor-report.md with zero analyzed competitors",
+        "If user pastes HTML for at least 1 page, continues with partial analysis and notes which competitors were skipped",
+        "If user says 'skip all', gracefully exits and suggests running with different URLs"
+      ]
     }
   ]
 }

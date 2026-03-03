@@ -54,6 +54,26 @@
         "Message match table present — headline 1 = landing page h1",
         "Saves both output files to correct paths"
       ]
+    },
+    {
+      "name": "edge-case-no-niche-brief",
+      "prompt": "Create personas for mystery-project. I haven't run any research yet.",
+      "preconditions": [
+        "output/mystery-project/research/niche-brief.md does NOT exist",
+        "output/mystery-project/research/competitor-report.md does NOT exist"
+      ],
+      "expected_outputs": [],
+      "expected_behavior": [
+        "Checks for output/mystery-project/research/niche-brief.md — file not found",
+        "STOPS immediately with clear error message",
+        "Error message includes: '⚠️ Required input not found: output/mystery-project/research/niche-brief.md'",
+        "Error message includes instruction: 'Run niche-research skill first'",
+        "Does NOT generate personas from guesswork or general knowledge",
+        "Does NOT create empty or placeholder personas.md",
+        "Does NOT ask user to provide keyword data as a workaround — the skill requires the file",
+        "Does NOT proceed to ad copy generation",
+        "No files are created in output/mystery-project/"
+      ]
     }
   ]
 }

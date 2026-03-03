@@ -34,6 +34,21 @@
         "Negative keywords include 'free', 'open source', 'enterprise' if targeting SMB",
         "Saves completed niche-brief.md to correct output path"
       ]
+    },
+    {
+      "name": "edge-case-vague-brief",
+      "prompt": "I want to sell stuff online. Can you help me make a landing page?",
+      "expected_outputs": [],
+      "expected_behavior": [
+        "Does NOT proceed with keyword research immediately — brief is too vague",
+        "Asks clarifying questions: What product/service? What geography/market? What language?",
+        "Suggests reasonable defaults: 'What country are you targeting? What is your product or service?'",
+        "Does NOT generate a niche-brief.md from guesswork",
+        "If user provides partial answers, extracts what's available and asks only for missing fields",
+        "Sets PROJECT_NAME only after understanding the product (not 'stuff-online')",
+        "If web_search is used despite vagueness, searches are broad and exploratory, not definitive",
+        "Handles gracefully without crashing or producing garbage output"
+      ]
     }
   ]
 }

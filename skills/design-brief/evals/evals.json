@@ -1,1 +1,73 @@
-{"skill_name": "design-brief", "evals": []}
+{
+  "skill_name": "design-brief",
+  "evals": [
+    {
+      "name": "vietnamese-dental-with-uupm",
+      "prompt": "Create a design system for dental-implant-clinic.",
+      "preconditions": [
+        "output/dental-implant-clinic/research/niche-brief.md must exist",
+        "output/dental-implant-clinic/research/personas.md should exist",
+        ".claude/skills/ui-ux-pro-max/scripts/search.py must exist (UUPM installed)"
+      ],
+      "expected_outputs": [
+        "output/dental-implant-clinic/design-system/MASTER.md"
+      ],
+      "expected_behavior": [
+        "Reads niche-brief.md for industry, product type, and ad groups",
+        "Reads personas.md for audience tone preferences",
+        "Detects UUPM at .claude/skills/ui-ux-pro-max/scripts/search.py — takes Path A",
+        "Constructs search query with 5-8 keywords: 'dental clinic implant healthcare Vietnamese trust professional'",
+        "Runs 7 UUPM searches: design-system, landing, color, typography, style, page overrides, stack",
+        "Merges Google Ads LP overrides (CTA 48px+, no nav, 4.5:1 contrast, 3 CTA placements)",
+        "Validates all checklist items: colors, fonts, section order, breakpoints, CTA rules",
+        "MASTER.md does NOT contain '⚠️ fallback' warning since UUPM was used",
+        "Saves to output/dental-implant-clinic/design-system/MASTER.md"
+      ]
+    },
+    {
+      "name": "english-saas-without-personas",
+      "prompt": "Create design system for project-management-saas. No personas have been created yet.",
+      "preconditions": [
+        "output/project-management-saas/research/niche-brief.md must exist",
+        "output/project-management-saas/research/personas.md must NOT exist"
+      ],
+      "expected_outputs": [
+        "output/project-management-saas/design-system/MASTER.md"
+      ],
+      "expected_behavior": [
+        "Reads niche-brief.md successfully",
+        "Notes personas.md missing with warning: 'Tone defaults may be generic'",
+        "Proceeds with design generation using niche-brief data only",
+        "Uses generic audience assumptions for mood keywords",
+        "Still produces complete MASTER.md with all required sections",
+        "LP overrides still applied regardless of persona absence",
+        "Saves to correct output path"
+      ]
+    },
+    {
+      "name": "edge-case-uupm-not-installed",
+      "prompt": "Create design system for my-fitness-studio. It's a gym in Bangkok targeting young professionals.",
+      "preconditions": [
+        "output/my-fitness-studio/research/niche-brief.md must exist",
+        ".claude/skills/ui-ux-pro-max/scripts/search.py must NOT exist (UUPM not installed)"
+      ],
+      "expected_outputs": [
+        "output/my-fitness-studio/design-system/MASTER.md"
+      ],
+      "expected_behavior": [
+        "Checks for .claude/skills/ui-ux-pro-max/scripts/search.py — not found",
+        "Tells user: 'UUPM (UI UX Pro Max) is not installed. Using fallback design rules.'",
+        "Takes Path B: reads references/fallback-design-rules.md",
+        "Matches fitness/gym industry to appropriate fallback palette (energetic, bold colors)",
+        "Matches 'young professionals' audience to modern, clean style",
+        "Manually constructs MASTER.md from fallback data",
+        "MASTER.md includes '⚠️ Generated from fallback rules (UUPM not available)' warning at top",
+        "Still includes all required sections: colors, typography, components, spacing, section order",
+        "Still merges Google Ads LP overrides (CTA sizing, no nav, contrast checks)",
+        "Validates completeness checklist before saving",
+        "Does NOT crash or produce empty output",
+        "Suggests installing UUPM for better results"
+      ]
+    }
+  ]
+}

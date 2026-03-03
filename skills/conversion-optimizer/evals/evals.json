@@ -51,6 +51,27 @@
         "Generates A/B tests even without research context (based on observed weaknesses)",
         "If page has navigation menu, flags it as non-landing-page and notes in report header"
       ]
+    },
+    {
+      "name": "edge-case-url-returns-404",
+      "prompt": "Audit this landing page for broken-site project: https://httpstat.us/404",
+      "preconditions": [
+        "No output/broken-site/ directory exists",
+        "web_fetch is available but URL returns HTTP 404"
+      ],
+      "expected_outputs": [],
+      "expected_behavior": [
+        "Attempts web_fetch on https://httpstat.us/404",
+        "Receives 404 Not Found response",
+        "Does NOT crash or produce an audit of the 404 error page",
+        "Tells user clearly: 'The URL returned a 404 (Not Found). The page does not exist at this address.'",
+        "Offers alternatives: '1. Check the URL and try again, 2. Provide a different URL, 3. Paste the HTML source directly'",
+        "If user provides corrected URL → proceeds with audit normally",
+        "If user pastes HTML → processes pasted content through full 7-category audit",
+        "If user has no alternative → exits gracefully with no report generated",
+        "Does NOT create an empty or placeholder optimization-report.md",
+        "Does NOT score the 404 error page as if it were a landing page"
+      ]
     }
   ]
 }

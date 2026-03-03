@@ -1,1 +1,80 @@
-{"skill_name": "landing-page-builder", "evals": []}
+{
+  "skill_name": "landing-page-builder",
+  "evals": [
+    {
+      "name": "html-tailwind-dental-full-context",
+      "prompt": "Build the landing page for dental-implant-clinic.",
+      "preconditions": [
+        "output/dental-implant-clinic/design-system/MASTER.md must exist",
+        "output/dental-implant-clinic/research/niche-brief.md must exist",
+        "output/dental-implant-clinic/research/ad-copy-suggestions.md must exist",
+        "output/dental-implant-clinic/research/personas.md must exist",
+        "No package.json in project root (defaults to HTML+Tailwind)"
+      ],
+      "expected_outputs": [
+        "output/dental-implant-clinic/src/index.html"
+      ],
+      "expected_behavior": [
+        "Validates all required inputs exist before generating code",
+        "Detects no package.json → selects HTML+Tailwind stack",
+        "Reads MASTER.md for colors, fonts, components",
+        "h1 EXACTLY matches headline 1 from ad-copy-suggestions.md (message match)",
+        "All 9 sections present: HEAD, HERO, PAIN POINTS, BENEFITS, SOCIAL PROOF, HOW IT WORKS, FAQ, FINAL CTA, FOOTER",
+        "Zero navigation — no nav bar, no hamburger menu",
+        "CTA repeated 3 times: hero, after social proof, form submit",
+        "FAQ uses CSS-only accordion (<details>/<summary>)",
+        "FAQPage + LocalBusiness schema markup in <head>",
+        "GTM placeholder, DKI script, conversion tracking present",
+        "Mobile-first: responsive at 375px/768px/1024px",
+        "All 18 pre-delivery checklist items pass",
+        "Saves to output/dental-implant-clinic/src/index.html"
+      ]
+    },
+    {
+      "name": "react-nextjs-saas-minimal-context",
+      "prompt": "Build landing page for project-management-saas. We use Next.js.",
+      "preconditions": [
+        "output/project-management-saas/design-system/MASTER.md must exist",
+        "output/project-management-saas/research/niche-brief.md must exist",
+        "output/project-management-saas/research/ad-copy-suggestions.md may NOT exist",
+        "output/project-management-saas/research/personas.md may NOT exist"
+      ],
+      "expected_outputs": [
+        "output/project-management-saas/src/app/page.tsx"
+      ],
+      "expected_behavior": [
+        "User specified Next.js — uses React/Next.js stack guide",
+        "Warns about missing ad-copy-suggestions.md — uses primary keyword from niche-brief as h1",
+        "Warns about missing personas.md — uses generic pain points and FAQ",
+        "Generates React components with TypeScript",
+        "Still includes all 9 sections with generic content where persona data is missing",
+        "Still applies all 5 critical build rules (message match, mobile-first, single CTA, no nav, accessibility)",
+        "Schema markup generated as Next.js metadata or script tag",
+        "Saves to output/project-management-saas/src/app/page.tsx"
+      ]
+    },
+    {
+      "name": "edge-case-unsupported-stack",
+      "prompt": "Build the landing page for my-store using Vue.js with Nuxt. The project name is my-store.",
+      "preconditions": [
+        "output/my-store/design-system/MASTER.md must exist",
+        "output/my-store/research/niche-brief.md must exist",
+        "No stack-guides/vue-nuxt.md exists in references/"
+      ],
+      "expected_outputs": [
+        "output/my-store/src/index.html"
+      ],
+      "expected_behavior": [
+        "User requests Vue.js/Nuxt — no stack guide exists for this framework",
+        "Does NOT crash or refuse to proceed",
+        "Informs user: 'No specific stack guide for Vue/Nuxt. Options: 1) I can generate HTML+Tailwind (recommended, simplest), 2) I can generate Vue/Nuxt code using general best practices'",
+        "If user accepts HTML+Tailwind fallback → proceeds normally with html-tailwind stack guide",
+        "If user insists on Vue/Nuxt → generates code using general Vue patterns without a stack guide, adds warning: 'Generated without framework-specific guide. Review for Vue/Nuxt best practices.'",
+        "Either way, all 5 critical build rules still enforced (message match, mobile-first, single CTA, no nav, accessibility)",
+        "All 9 sections still generated regardless of stack choice",
+        "Pre-delivery checklist still runs (some checks may be framework-agnostic)",
+        "Does NOT generate an empty file or skip code generation entirely"
+      ]
+    }
+  ]
+}
