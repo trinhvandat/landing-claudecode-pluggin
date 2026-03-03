@@ -4,32 +4,32 @@
   "skills": [
     {
       "name": "niche-research",
-      "description": "Research keywords, search intent, and CPC estimates for Google Ads landing pages. Use when starting a new landing page project, when user says 'research keywords', 'find niche', 'market analysis', or any new client brief. Always use this BEFORE building any landing page.",
+      "description": "Research keywords, search intent, CPC estimates, and ad group structure for Google Ads landing pages. USE THIS SKILL when: starting a new landing page project, user says 'research keywords', 'find niche', 'market analysis', 'keyword research', 'new client brief', 'new project', 'new campaign', 'start a landing page', 'I have a new client', 'Google Ads research', 'what keywords should I target', 'CPC analysis', 'search intent', 'ad group planning', user provides a business name and wants a landing page, user mentions Google Ads budget, user asks about market opportunity, user wants to understand search demand. Always run BEFORE building any landing page. This is Step 1 of 6 in the landing page pipeline.",
       "path": "skills/niche-research/SKILL.md"
     },
     {
       "name": "competitor-analysis",
-      "description": "Crawl and analyze competitor landing pages to find patterns, strengths, weaknesses, and gaps. Use when user provides competitor URLs, says 'analyze competitor', 'check competition', or wants to understand the competitive landscape before building.",
+      "description": "Crawl, score, and analyze competitor landing pages to find patterns, strengths, weaknesses, and gaps. USE THIS SKILL when: user provides competitor URLs, user says 'analyze competitors', 'check competition', 'competitor research', 'competitive analysis', 'spy on competitors', 'what are competitors doing', 'compare landing pages', 'benchmark competitors', 'look at their page', 'crawl this URL', 'review competitor site', 'find competitive gaps', 'swipe file', user pastes a competitor URL, user asks what competitors do well or poorly, user wants inspiration from existing pages. This is Step 2 of 6 — can run in parallel with niche-research.",
       "path": "skills/competitor-analysis/SKILL.md"
     },
     {
       "name": "audience-persona",
-      "description": "Generate buyer personas and Google Ads copy suggestions based on research data. Use when user says 'create persona', 'target audience', 'write ad copy', 'who is the customer', or after completing niche research and competitor analysis.",
+      "description": "Generate buyer personas, Google Ads headlines, descriptions, sitelinks, and CTA copy with verified character limits. USE THIS SKILL when: user says 'create personas', 'buyer persona', 'target audience', 'who is the customer', 'ad copy', 'write ads', 'Google Ads headlines', 'write descriptions', 'who are we targeting', 'customer profile', 'ideal customer', 'ad group copy', 'write Google Ads', 'headline suggestions', 'CTA copy', 'sitelink suggestions', user asks who would buy this product, user wants to understand their audience, user needs Google Ads text, user asks about ad character limits. This is Step 3 of 6 — requires niche-research output.",
       "path": "skills/audience-persona/SKILL.md"
     },
     {
       "name": "design-brief",
-      "description": "Generate a design system (MASTER.md) for the landing page using UUPM design intelligence. Use when user says 'design the page', 'choose colors', 'pick style', 'create design brief', or before building the landing page. This bridges research outputs to visual design decisions.",
+      "description": "Generate a complete design system (MASTER.md) with colors, typography, components, and spacing for a landing page using UUPM design intelligence or fallback rules. USE THIS SKILL when: user says 'create design system', 'design brief', 'design the page', 'choose colors', 'pick fonts', 'visual style', 'branding for landing page', 'design tokens', 'color palette', 'typography', 'what colors should I use', 'what font', 'UI design', 'style guide', 'look and feel', user asks about visual design decisions before building, user wants a professional color scheme, user mentions UUPM or design intelligence. This is Step 4 of 6 — bridges research to visual design.",
       "path": "skills/design-brief/SKILL.md"
     },
     {
       "name": "landing-page-builder",
-      "description": "Generate complete landing page code optimized for Google Ads conversion. Use when user says 'build the page', 'create landing page', 'code the page', 'generate HTML'. Requires design-brief output (MASTER.md) and research outputs. Auto-detects or asks for tech stack.",
+      "description": "Generate complete, production-ready landing page code (HTML+Tailwind, React/Next.js, or Astro) optimized for Google Ads conversion with message match, DKI, GTM, schema markup, and mobile-first responsive design. USE THIS SKILL when: user says 'build landing page', 'create the page', 'generate landing page', 'code the page', 'build the LP', 'make the page', 'generate HTML', 'write the landing page', 'create landing page code', 'build it', 'code it', 'implement the page', user wants the actual page built, user asks for HTML or code output, user says 'next step' after design-brief. This is Step 5 of 6 — requires design-brief and niche-research outputs.",
       "path": "skills/landing-page-builder/SKILL.md"
     },
     {
       "name": "conversion-optimizer",
-      "description": "Audit an existing landing page for Google Ads conversion optimization. Scores across 7 categories, suggests specific fixes and A/B test variants. Use when user says 'audit page', 'optimize conversion', 'review landing page', 'improve page', or after building a page.",
+      "description": "Audit any landing page with a 7-category weighted scoring system (28 sub-metrics), generate prioritized fix recommendations, and suggest A/B test variants. Works on project pages or any URL. USE THIS SKILL when: user says 'audit landing page', 'optimize conversions', 'check my page', 'score the page', 'CRO audit', 'conversion rate optimization', 'what should I improve', 'review the page', 'how good is my page', 'rate my landing page', 'improve conversions', 'landing page review', 'page audit', 'test suggestions', 'A/B test ideas', 'optimize the page', user pastes a landing page URL for review, user asks what's wrong with their page, user wants to improve conversion rate. This is Step 6 of 6 — works standalone or with full research context.",
       "path": "skills/conversion-optimizer/SKILL.md"
     }
   ]
