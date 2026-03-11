@@ -320,3 +320,716 @@ Footer rules:
   .container { max-width: 1200px; margin: 0 auto; }
 }
 ```
+
+---
+
+## Section 10: ZALO CHAT (Vietnamese Market Essential)
+
+Zalo is the dominant messaging app in Vietnam. A landing page without Zalo chat loses leads.
+
+```html
+<!-- Zalo Chat Floating Button -->
+<a href="https://zalo.me/{ZALO_OA_ID}"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="zalo-chat-button"
+   aria-label="Chat với chúng tôi qua Zalo">
+  <img src="/img/zalo-icon.svg" alt="Zalo" width="50" height="50">
+</a>
+
+<style>
+.zalo-chat-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #0068FF; /* Zalo blue */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 104, 255, 0.4);
+  transition: transform 0.2s ease;
+}
+.zalo-chat-button:hover {
+  transform: scale(1.1);
+}
+/* Mobile: larger touch target, more padding from edge */
+@media (max-width: 768px) {
+  .zalo-chat-button {
+    bottom: 16px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+  }
+}
+</style>
+```
+
+Rules:
+- Place in bottom-right corner (standard position for chat)
+- Use official Zalo blue (#0068FF) for brand recognition
+- `{ZALO_OA_ID}` = Zalo Official Account ID (user must provide)
+- Include both Zalo button AND phone number (some prefer calling)
+- Consider adding Facebook Messenger as secondary option
+
+### Zalo + Phone Combo (Recommended)
+
+```html
+<div class="contact-buttons">
+  <a href="tel:{PHONE}" class="phone-button">
+    <svg><!-- phone icon --></svg>
+    Gọi Ngay
+  </a>
+  <a href="https://zalo.me/{ZALO_OA_ID}" class="zalo-button">
+    <img src="/img/zalo-icon.svg" alt="Zalo">
+    Chat Zalo
+  </a>
+</div>
+```
+
+---
+
+## Section 11: COUNTDOWN / URGENCY ELEMENTS
+
+Use urgency elements to increase conversion. Use responsibly — fake urgency damages trust.
+
+### Pattern 1: Countdown Timer
+
+```html
+<div class="countdown-banner" id="countdown">
+  <p>Ưu đãi kết thúc sau:</p>
+  <div class="countdown-timer">
+    <div class="countdown-unit">
+      <span id="days">00</span>
+      <small>Ngày</small>
+    </div>
+    <div class="countdown-unit">
+      <span id="hours">00</span>
+      <small>Giờ</small>
+    </div>
+    <div class="countdown-unit">
+      <span id="minutes">00</span>
+      <small>Phút</small>
+    </div>
+    <div class="countdown-unit">
+      <span id="seconds">00</span>
+      <small>Giây</small>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Set end date (replace with actual campaign end)
+  const endDate = new Date('{YYYY-MM-DD}T23:59:59').getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = endDate - now;
+
+    if (distance < 0) {
+      document.getElementById('countdown').style.display = 'none';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+</script>
+```
+
+### Pattern 2: Limited Quantity
+
+```html
+<div class="scarcity-banner">
+  <span class="scarcity-icon">🔥</span>
+  <p>Chỉ còn <strong>{N}</strong> suất ưu đãi trong tháng này</p>
+</div>
+```
+
+### Pattern 3: Social Proof Urgency
+
+```html
+<div class="live-visitors">
+  <span class="pulse-dot"></span>
+  <p><strong>{N}</strong> người đang xem trang này</p>
+</div>
+
+<style>
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #22C55E;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+</style>
+```
+
+Rules for urgency elements:
+- ONLY use if the urgency is REAL (actual deadline, actual limited quantity)
+- Fake urgency = immediate trust destruction
+- Hide countdown when expired (don't show negative time)
+- Position: above CTA or in sticky banner
+
+---
+
+## Section 12: PRICING DISPLAY PATTERNS
+
+### Pattern 1: Anchor Pricing (Strike-through)
+
+```html
+<div class="price-display anchor-pricing">
+  <p class="original-price">
+    <span class="label">Giá thị trường:</span>
+    <span class="strike">25.000.000đ</span>
+  </p>
+  <p class="sale-price">
+    <span class="label">Giá ưu đãi:</span>
+    <span class="price">15.000.000đ</span>
+  </p>
+  <p class="savings">Tiết kiệm: 10.000.000đ (40%)</p>
+</div>
+```
+
+### Pattern 2: Monthly Payment Breakdown (High-Ticket)
+
+```html
+<div class="price-display monthly-breakdown">
+  <p class="headline-price">
+    Chỉ từ <strong>500.000đ</strong>/tháng
+  </p>
+  <p class="total-price">
+    (Tổng: 15.000.000đ × 30 tháng, lãi suất 0%)
+  </p>
+  <p class="partner">Qua VPBank / Home Credit</p>
+</div>
+```
+
+### Pattern 3: Value Stack
+
+```html
+<div class="price-display value-stack">
+  <h3>Bạn sẽ nhận được:</h3>
+  <ul class="value-items">
+    <li>
+      <span class="item">Cấy ghép Implant Straumann</span>
+      <span class="value">20.000.000đ</span>
+    </li>
+    <li>
+      <span class="item">Chụp CT 3D miễn phí</span>
+      <span class="value">500.000đ</span>
+    </li>
+    <li>
+      <span class="item">Tái khám 10 lần miễn phí</span>
+      <span class="value">2.000.000đ</span>
+    </li>
+    <li>
+      <span class="item">Bảo hành 10 năm</span>
+      <span class="value">Vô giá</span>
+    </li>
+  </ul>
+  <div class="total-value">
+    <p>Tổng giá trị: <span class="strike">22.500.000đ</span></p>
+    <p class="actual-price">Bạn chỉ trả: <strong>15.000.000đ</strong></p>
+  </div>
+</div>
+```
+
+### Pattern 4: Tiered Pricing (Multiple Options)
+
+```html
+<div class="pricing-tiers">
+  <div class="tier">
+    <h4>Cơ Bản</h4>
+    <p class="price">12.000.000đ</p>
+    <ul>
+      <li>Implant Hàn Quốc</li>
+      <li>Bảo hành 5 năm</li>
+    </ul>
+    <a href="#form" class="cta-secondary">Chọn Gói Này</a>
+  </div>
+
+  <div class="tier featured">
+    <span class="badge">Phổ Biến Nhất</span>
+    <h4>Tiêu Chuẩn</h4>
+    <p class="price">18.000.000đ</p>
+    <ul>
+      <li>Implant Straumann (Thụy Sĩ)</li>
+      <li>Bảo hành 10 năm</li>
+      <li>Tái khám miễn phí</li>
+    </ul>
+    <a href="#form" class="cta-button">Chọn Gói Này</a>
+  </div>
+
+  <div class="tier">
+    <h4>Cao Cấp</h4>
+    <p class="price">25.000.000đ</p>
+    <ul>
+      <li>Implant Nobel Biocare (Mỹ)</li>
+      <li>Bảo hành trọn đời</li>
+      <li>VIP lounge</li>
+    </ul>
+    <a href="#form" class="cta-secondary">Chọn Gói Này</a>
+  </div>
+</div>
+```
+
+Rules for pricing:
+- Always show value before asking for money
+- Use Vietnamese currency format: 15.000.000đ (not 15,000,000)
+- Monthly breakdown makes high-ticket items feel affordable
+- Highlight the "most popular" tier to guide decision
+- Include "what's included" to justify price
+
+---
+
+## Section 13: VIETNAMESE PAYMENT METHODS
+
+Essential for Vietnamese market — show payment options to reduce friction.
+
+```html
+<div class="payment-methods">
+  <h4>Phương Thức Thanh Toán</h4>
+  <div class="payment-icons">
+    <img src="/img/payment/momo.svg" alt="MoMo" width="48" height="48">
+    <img src="/img/payment/zalopay.svg" alt="ZaloPay" width="48" height="48">
+    <img src="/img/payment/vnpay.svg" alt="VNPay" width="48" height="48">
+    <img src="/img/payment/visa.svg" alt="Visa" width="48" height="48">
+    <img src="/img/payment/mastercard.svg" alt="Mastercard" width="48" height="48">
+  </div>
+  <p class="payment-note">Hỗ trợ trả góp 0% qua VPBank, Home Credit, FE Credit</p>
+</div>
+```
+
+### Installment Badge (Common in Vietnamese LPs)
+
+```html
+<div class="installment-badge">
+  <span class="badge-icon">💳</span>
+  <div class="badge-content">
+    <strong>Trả Góp 0%</strong>
+    <small>Qua thẻ tín dụng hoặc công ty tài chính</small>
+  </div>
+</div>
+```
+
+### Bank Transfer Info (For High-Value Transactions)
+
+```html
+<details class="bank-transfer-info">
+  <summary>Thông tin chuyển khoản ngân hàng</summary>
+  <div class="bank-details">
+    <p><strong>Ngân hàng:</strong> {BANK_NAME}</p>
+    <p><strong>Số tài khoản:</strong> {ACCOUNT_NUMBER}</p>
+    <p><strong>Chủ tài khoản:</strong> {ACCOUNT_HOLDER}</p>
+    <p><strong>Nội dung CK:</strong> {BUSINESS_NAME} + SĐT</p>
+  </div>
+</details>
+```
+
+Vietnamese payment patterns:
+- MoMo, ZaloPay, VNPay are most popular e-wallets
+- Installment (trả góp) is expected for items > 5 million VND
+- Bank transfer is common for B2B or high-value consumer purchases
+- Always mention "0%" interest — this is a major selling point
+- Include VAT invoice availability: "Có hóa đơn VAT"
+
+---
+
+## Section 14: PRODUCT COMPARISON CARDS (Equal Height Grid)
+
+Use this pattern when displaying multiple product variants/tiers side by side. The CSS ensures all cards have equal height with buttons aligned at the bottom.
+
+### HTML Structure
+
+```html
+<section id="products">
+  <h2>{SECTION_TITLE}</h2>
+  <p class="section-subtitle">{SUBTITLE}</p>
+
+  <div class="product-grid">
+    <!-- Product Card -->
+    <div class="product-card">
+      <!-- Optional: Product Image -->
+      <div class="product-image">
+        <img src="{IMAGE_URL}" alt="{PRODUCT_NAME}"
+             width="400" height="400" loading="lazy"
+             class="product-img">
+      </div>
+
+      <!-- Optional: Badge (Best Seller, Premium, etc.) -->
+      <div class="product-badge">{BADGE_TEXT}</div>
+
+      <!-- Price Header -->
+      <div class="product-header">
+        <span class="original-price">{ORIGINAL_PRICE}</span>
+        <h3 class="product-name">{PRODUCT_NAME}</h3>
+        <p class="product-price">{SALE_PRICE}</p>
+      </div>
+
+      <!-- Features List (grows to fill space) -->
+      <div class="product-content">
+        <ul class="product-features">
+          <li><span class="check">✓</span> {FEATURE_1}</li>
+          <li><span class="check">✓</span> {FEATURE_2}</li>
+          <li><span class="check">✓</span> {FEATURE_3}</li>
+        </ul>
+
+        <!-- CTA Button (always at bottom) -->
+        <a href="#form" class="product-cta">{CTA_TEXT}</a>
+      </div>
+    </div>
+
+    <!-- Repeat for each product -->
+  </div>
+</section>
+```
+
+### Critical CSS for Equal Height Cards
+
+```css
+/* Product Grid - Equal Height Cards */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* THE CRITICAL RULES FOR EQUAL HEIGHT */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;  /* Fill grid cell height */
+  position: relative;
+}
+
+.product-content {
+  flex-grow: 1;  /* Grow to fill remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.product-features {
+  flex-grow: 1;  /* Push CTA to bottom */
+}
+
+.product-cta {
+  margin-top: auto;  /* Always at bottom */
+}
+
+/* Product Image */
+.product-image {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+/* Badge Positioning */
+.product-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+```
+
+### Tailwind Version
+
+```html
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <!-- Product Card with Equal Height -->
+  <div class="flex flex-col h-full bg-white rounded-xl shadow-md overflow-hidden relative">
+    <!-- Badge -->
+    <div class="absolute top-2 right-2 bg-primary text-white text-xs font-bold px-3 py-1 rounded z-10">
+      BEST SELLER
+    </div>
+
+    <!-- Image -->
+    <div class="aspect-square overflow-hidden">
+      <img src="{URL}" alt="{ALT}"
+           class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+           loading="lazy" width="400" height="400">
+    </div>
+
+    <!-- Header -->
+    <div class="p-4 text-center bg-rose-50">
+      <span class="text-sm text-gray-500"><s>{ORIGINAL_PRICE}</s></span>
+      <h3 class="font-bold text-xl">{NAME}</h3>
+      <p class="text-primary font-bold text-2xl">{PRICE}</p>
+    </div>
+
+    <!-- Content - MUST use flex-grow for equal height -->
+    <div class="flex-grow flex flex-col p-4">
+      <!-- Features list grows to push CTA down -->
+      <ul class="flex-grow text-sm space-y-2 mb-4">
+        <li class="flex items-start gap-2">
+          <span class="text-green-600">✓</span> {FEATURE}
+        </li>
+      </ul>
+
+      <!-- CTA uses mt-auto to stick to bottom -->
+      <a href="#form" class="mt-auto block text-center bg-primary text-white py-3 rounded-lg font-semibold">
+        {CTA_TEXT}
+      </a>
+    </div>
+  </div>
+</div>
+```
+
+### Rules for Product Cards
+- ALWAYS use `flex flex-col h-full` on the card container
+- ALWAYS use `flex-grow` on the content section
+- ALWAYS use `flex-grow` on the features list
+- ALWAYS use `mt-auto` on the CTA button
+- Images should use `aspect-square` or fixed aspect ratio
+- Badges should be `position: absolute` with `z-index: 10`
+
+---
+
+## Section 15: FAQ ACCORDION (CSS-Only with Details/Summary)
+
+**IMPORTANT**: Prefer CSS-only `<details>/<summary>` over JavaScript-based accordions. It's more accessible, works without JS, and has no styling conflicts.
+
+### CSS-Only Pattern (Recommended)
+
+```html
+<section id="faq">
+  <h2>Câu Hỏi Thường Gặp</h2>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary class="faq-question">
+        <span>{QUESTION_1}</span>
+        <span class="faq-icon">+</span>
+      </summary>
+      <div class="faq-answer">
+        <p>{ANSWER_1}</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">
+        <span>{QUESTION_2}</span>
+        <span class="faq-icon">+</span>
+      </summary>
+      <div class="faq-answer">
+        <p>{ANSWER_2}</p>
+      </div>
+    </details>
+
+    <!-- Repeat for 4-6 questions -->
+  </div>
+</section>
+```
+
+### CSS for Details/Summary Accordion
+
+```css
+.faq-list {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none; /* Remove default marker */
+}
+
+/* Remove default details marker in webkit */
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-icon {
+  font-size: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate icon when open */
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Answer - hidden by default, shown when open */
+.faq-answer {
+  padding: 0 1.5rem 1rem 1.5rem;
+  color: #6b7280;
+}
+
+/* Smooth animation (optional, works in modern browsers) */
+.faq-item {
+  transition: all 0.2s ease;
+}
+```
+
+### Tailwind Version (CSS-Only)
+
+```html
+<div class="max-w-3xl mx-auto space-y-4">
+  <details class="bg-white rounded-lg shadow-sm border border-gray-100 group">
+    <summary class="flex justify-between items-center px-6 py-4 font-semibold cursor-pointer list-none">
+      <span>Mùi nến thơm có nồng không?</span>
+      <span class="text-xl transition-transform group-open:rotate-45">+</span>
+    </summary>
+    <div class="px-6 pb-4 text-gray-600">
+      Nến BST Chill n Relax có mùi hương nhẹ nhàng, thư giãn, giúp ngủ ngon.
+    </div>
+  </details>
+</div>
+```
+
+### JavaScript Accordion (If Required)
+
+If you MUST use JavaScript (e.g., for animation), follow this pattern to avoid styling conflicts:
+
+```html
+<div class="faq-list">
+  <div class="faq-item">
+    <button class="faq-toggle" onclick="toggleFaq(this)">
+      <span>Question text</span>
+      <span class="faq-icon">+</span>
+    </button>
+    <!-- NO inline padding on faq-content - CSS handles it -->
+    <div class="faq-content">
+      <p>Answer text</p>
+    </div>
+  </div>
+</div>
+```
+
+```css
+/* CRITICAL: All padding controlled by CSS, not inline classes */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1.5rem; /* horizontal only when closed */
+}
+
+.faq-content.open {
+  max-height: 500px;
+  padding: 0 1.5rem 1rem 1.5rem; /* add bottom padding when open */
+}
+
+/* DO NOT add inline padding classes like "px-6 pb-4" to faq-content */
+/* They will conflict with max-height: 0 and show padding when closed */
+```
+
+```javascript
+function toggleFaq(btn) {
+  const content = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+
+  content.classList.toggle('open');
+  icon.textContent = content.classList.contains('open') ? '−' : '+';
+}
+```
+
+### Rules for FAQ Section
+- **PREFER** `<details>/<summary>` (CSS-only, accessible, no JS)
+- If using JS accordion: **NEVER** add inline padding to `.faq-content`
+- All padding must be controlled by CSS to work with `max-height: 0`
+- Include `list-style: none` and `::-webkit-details-marker { display: none }` to remove default markers
+- Use `group-open:` in Tailwind for open state styling
+
+---
+
+## Section 16: IMAGE FETCHING GUIDELINES
+
+When a source product URL is provided, fetch real images instead of using placeholders.
+
+### When to Fetch Images
+
+```
+IF user provides source URL (e.g., product page, existing website):
+  1. Use WebFetch to extract image URLs from the page
+  2. Look for: hero images, product gallery, variant images
+  3. Use the actual URLs in the generated landing page
+
+IF no source URL provided:
+  1. Use placeholder structure with proper dimensions
+  2. Add TODO comments for user to replace
+```
+
+### Image Optimization Checklist
+
+```html
+<!-- Hero Image (above fold) -->
+<img src="{URL}"
+     alt="{DESCRIPTIVE_ALT}"
+     width="600" height="400"
+     loading="eager"
+     class="...">
+
+<!-- Product/Gallery Images (below fold) -->
+<img src="{URL}"
+     alt="{DESCRIPTIVE_ALT}"
+     width="400" height="400"
+     loading="lazy"
+     class="...">
+```
+
+### Required Image Attributes
+- `alt` — Descriptive text for SEO and accessibility
+- `width` + `height` — Prevents layout shift (CLS)
+- `loading="eager"` — For above-fold images only
+- `loading="lazy"` — For all other images
+- `class` with `object-cover` — For consistent sizing

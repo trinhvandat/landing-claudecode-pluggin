@@ -81,9 +81,32 @@ EXTRACT THESE (use defaults if not found):
 IF a page-specific override exists at `design-system/pages/{ad-group}.md`:
   → Read it. Its rules override MASTER.md for this variant.
 
+## Step 3.5: Fetch Real Images (If Source URL Provided)
+
+```
+IF user provides a source product URL (e.g., henygarden.com/products/...):
+  1. Use WebFetch to extract all product image URLs
+  2. Look for: hero images, product variants, gallery images
+  3. Store URLs for use in Step 4
+
+  EXTRACT:
+    hero_image_url    → Main product/lifestyle image for hero section
+    product_images[]  → Individual product variant images (LOVE_01, LOVE_02, etc.)
+    gallery_images[]  → Additional product photography
+
+IF no source URL:
+  1. Use placeholder structure with correct dimensions
+  2. Add comment: "<!-- TODO: Replace with actual product image -->"
+```
+
 ## Step 4: Build Section by Section
 
 Generate code following this section order. Read `references/section-patterns.md` for detailed HTML/component patterns for each section.
+
+**IMPORTANT PATTERNS TO USE:**
+- For product comparison grids → Use **Section 14: PRODUCT COMPARISON CARDS** pattern
+- For FAQ accordion → Use **Section 15: FAQ ACCORDION** (prefer CSS-only `<details>/<summary>`)
+- For images → Follow **Section 16: IMAGE FETCHING GUIDELINES**
 
 ```
 SECTION ORDER (9 sections):
@@ -144,6 +167,40 @@ SECTION ORDER (9 sections):
    - Legal links: Privacy Policy, Terms of Service
    - Phone number + email
    - NO navigation links — landing page stays distraction-free
+```
+
+### Vietnamese Market Patterns (Auto-Include)
+
+Check `output/{PROJECT_NAME}/research/niche-brief.md` for target market.
+
+```
+IF target market language = Vietnamese OR location contains "Vietnam", "Việt Nam", "TPHCM", "Hà Nội":
+
+  AUTO-INCLUDE these from references/section-patterns.md:
+
+  1. ZALO CHAT (Section 10)
+     - Add floating Zalo button in bottom-right corner
+     - Use placeholder: {ZALO_OA_ID} — user must provide
+     - Position: fixed, z-index 1000
+
+  2. VIETNAMESE PAYMENT METHODS (Section 13)
+     - Add payment icons section near form/CTA
+     - Include: MoMo, ZaloPay, VNPay, Visa, Mastercard
+     - Add installment badge: "Trả Góp 0%"
+
+  3. CURRENCY FORMAT
+     - Use Vietnamese format: 15.000.000đ (not 15,000,000)
+     - Use đ symbol, not VND
+
+  OPTIONAL (include if user requests or context suggests):
+
+  4. COUNTDOWN TIMER (Section 11)
+     - Only if campaign has real deadline
+     - Never fake urgency
+
+  5. PRICING DISPLAY (Section 12)
+     - If price is mentioned in brief
+     - Use anchor pricing or monthly breakdown for high-ticket
 ```
 
 ### Critical Build Rules
@@ -248,7 +305,17 @@ IMAGES:
   Hero image: loading="eager" (above fold)
   All other images: loading="lazy"
   Use width + height attributes to prevent layout shift
-  Suggest WebP format in alt text comment
+
+  WebP FORMAT (recommended):
+  - Use WebP for 25-35% smaller file sizes vs JPEG/PNG
+  - Add fallback for older browsers using <picture> element:
+    <picture>
+      <source srcset="/img/hero.webp" type="image/webp">
+      <img src="/img/hero.jpg" alt="..." width="600" height="400">
+    </picture>
+  - Add comment for user to convert: <!-- Convert to WebP: cwebp input.jpg -o output.webp -->
+  - If user provides JPG/PNG placeholders, note in output:
+    "TODO: Convert images to WebP for faster load times"
 
 FONTS:
   <link rel="preload"> for primary font file
@@ -297,7 +364,14 @@ MOBILE:
 STRUCTURE:
   [ ] No navigation menu / no header links
   [ ] All 9 sections present
-  [ ] FAQ uses accordion format
+  [ ] FAQ uses accordion format (prefer CSS-only <details>/<summary>)
+  [ ] FAQ answers hidden by default (no visible padding when collapsed)
+
+PRODUCT CARDS (if applicable):
+  [ ] Cards use flex layout for equal height (flex flex-col h-full)
+  [ ] Card content uses flex-grow to push CTA to bottom
+  [ ] CTA buttons aligned at same position across all cards
+  [ ] Images use aspect-ratio for consistent sizing
 
 ACCESSIBILITY:
   [ ] All images have alt text

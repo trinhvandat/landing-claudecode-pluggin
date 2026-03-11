@@ -164,3 +164,83 @@
 - [ ] Set up A/B test #{HIGHEST_PRIORITY_TEST}
 - [ ] Re-audit after fixes: "Audit landing page for {PROJECT_NAME}"
 - [ ] Monitor conversion rate for 2 weeks before next optimization round
+- [ ] Complete the Human Review Checklist (see references/quality-validation.md)
+
+---
+
+## How to Get Real Trust Signals (For Sellers)
+
+If your page scored low on Trust & Social Proof, here's how to get real materials:
+
+### Getting Real Testimonials
+
+1. **WhatsApp/Zalo Screenshots**
+   - Ask satisfied customers to send a short message about their experience
+   - Screenshot the conversation (blur phone numbers)
+   - Best format: "Anh/chị [Name] - [District/City]"
+
+2. **Google Reviews**
+   - Ask customers to leave a Google review after service
+   - Embed Google Reviews widget on your page
+   - Or screenshot and display (with permission)
+
+3. **Video Testimonials**
+   - Even 15-second clips on phone are powerful
+   - Ask: "What was your concern before? How do you feel now?"
+   - Host on YouTube, embed on page
+
+4. **Before/After Photos**
+   - Get written consent (create a simple form)
+   - Take photos in consistent lighting
+   - Show transformation clearly
+
+### Getting Real Trust Badges
+
+| Badge Type | How to Get It |
+|------------|---------------|
+| Google Partner | Apply at partners.google.com (for agencies) |
+| Industry Certification | Apply through industry association |
+| "As Seen On" Logos | Get featured in local news/media |
+| Review Platform Scores | Claim profiles on Google, Facebook, Foursquare |
+| Payment Partner Logos | Contact Momo, ZaloPay for merchant logos |
+| ISO Certification | Apply through certification body |
+
+### Getting Real Photos
+
+1. **Staff/Team Photos**
+   - Professional headshots (can be done with phone + good lighting)
+   - Action shots of team working
+   - Group photo builds trust
+
+2. **Facility Photos**
+   - Clean, well-lit interior shots
+   - Equipment in use (shows modernity)
+   - Waiting area, entrance (helps customers find you)
+
+3. **Process Photos**
+   - Behind-the-scenes of service delivery
+   - Equipment close-ups
+   - Step-by-step visual guides
+
+4. **Customer Photos** (with consent)
+   - Happy customers with staff
+   - Before/after transformations
+   - Customers using product/service
+
+### Quick Wins for Trust
+
+| Effort | Action | Impact |
+|--------|--------|--------|
+| 5 min | Add Google Maps embed | Shows real location |
+| 10 min | Add business registration number | Proves legitimacy |
+| 15 min | Screenshot 3 WhatsApp testimonials | Real social proof |
+| 30 min | Take 5 facility photos with phone | Real environment |
+| 1 hour | Record 2 video testimonials | Highest trust impact |
+
+### What NOT to Do
+
+- ❌ Use stock photos for testimonials (obvious and destroys trust)
+- ❌ Fake review names or details
+- ❌ Use trust badges you haven't earned
+- ❌ Copy competitor testimonials
+- ❌ Use numbers you can't verify ("10,000+ customers" without proof)

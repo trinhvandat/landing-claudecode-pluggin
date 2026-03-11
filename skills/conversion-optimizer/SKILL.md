@@ -235,6 +235,27 @@ Score: {TOTAL}/100 — {RATING}
 {N} A/B tests suggested.
 
 Top priority: {MOST_CRITICAL_FIX}
+
+⚠️ IMPORTANT: This audit is a self-assessment. For full validation:
+- Complete the Human Review Checklist (5 min): see references/quality-validation.md
+- Run external tools: Lighthouse, HTML validator, mobile-friendly test
+- True validation requires 100+ real ad clicks and conversion data
+```
+
+## Step 7: Recommend Quality Validation (NEW)
+
+After the audit report, remind the user to validate externally:
+
+```
+Read references/quality-validation.md for:
+- Industry conversion rate benchmarks (is your target realistic?)
+- Human review checklist (5-minute pre-deployment check)
+- External tool validation (Lighthouse, W3C validator, WAVE)
+- Post-launch success criteria (when is the page truly validated?)
+
+The plugin audit score is ~40% confidence.
+Human review + external tools adds ~30%.
+Only real traffic data provides 100% confidence.
 ```
 
 ## Error Handling
