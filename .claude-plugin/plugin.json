@@ -2,9 +2,7 @@
   "name": "landing-page-pro",
   "version": "1.0.0",
   "description": "Research-driven Google Ads landing page builder — 6-skill pipeline from brief to deployed page",
-  "author": "Leonard",
-  "homepage": "",
-  "license": "MIT",
-  "claude_code_version": ">=1.0.0",
-  "skills_dir": "skills"
+  "author": {
+    "name": "Leonard"
+  }
 }
